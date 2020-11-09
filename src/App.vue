@@ -5,19 +5,19 @@
     </h1>
     <div class="filter-items">
       <!--Комнаты -->
-      <div class="filter-item d-inline-block" >
-        <span class="d-block ml-3">Комнаты</span>
+      <div class="filter-item d-inline-block mr-2" >
+        <span class="d-block ml-2">Комнаты</span>
         <div class=" btn-group-toggle" data-toggle="buttons">
           <label class=" btn btn-light">
             <input type="radio" v-model="selectRoom" value="0" id="room-s" autocomplete="off" >S
           </label>
-          <label class="btn btn-light">
+          <label class="mr-1 btn btn-light">
             <input type="radio" v-model="selectRoom" value="1" id="room-1" autocomplete="off">1K
           </label>
-          <label class="btn btn-light">
+          <label class="  btn btn-light">
             <input type="radio" v-model="selectRoom" value="2" id="room-2" autocomplete="off">2K
           </label>
-          <label class="btn btn-light">
+          <label class=" mr-1 btn btn-light">
             <input type="radio" v-model="selectRoom" value="3" id="room-3" autocomplete="off">3K
           </label>
         </div>
@@ -159,6 +159,7 @@ export default {
   },
   methods:{
     dropFilter(){
+      $('label.btn').removeClass('active')
       return this.flatsFiltered = this.flats
     },
     filterItems(){
