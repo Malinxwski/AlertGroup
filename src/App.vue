@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="overflow-y">
     <h1>
       Lorem ipsum dolor sit amet
     </h1>
@@ -105,7 +105,7 @@
     </div>
 
     <!--Квартиры -->
-    <div class="container mt-5">
+    <div class="container mt-5" style="z-index: -10">
       <div class="row row__height-375px mb-4 mr-1" v-for="chunk in flatChunks">
         <div class="col col-lg-3 col-md-6 col-sm-6 " v-for="flat of chunk">
           <div class="flat">

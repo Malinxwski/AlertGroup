@@ -17,6 +17,7 @@ html {
   height: 100vh !important;
   margin-top: 60px;
   text-align: center;
+  overflow-y: auto;
 }
 
 h1 {
