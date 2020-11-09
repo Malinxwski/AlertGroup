@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="overflow-y">
+  <div id="app">
     <h1>
       Lorem ipsum dolor sit amet
     </h1>
@@ -202,6 +202,8 @@ export default {
   async mounted() {
     this.flats = await this.$store.getters.flats
     this.flatsFiltered = this.flats
+
+    
 
   },
   components: {VueRangeSlider}

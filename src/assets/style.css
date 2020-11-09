@@ -59,6 +59,14 @@ input.small {
   margin-top: 5px;
   margin-left: 10px;
 }
+.btn-light-green:hover {
+  transform: scale(1.03);
+  color: white;
+  box-shadow: 0 5px 20px rgba(86, 86, 86, 0.25);
+}
+.btn-light-green:active {
+  box-shadow: 0 0 20px skyblue;
+}
 
 .filter__clear {
   cursor: pointer;
@@ -86,10 +94,11 @@ input.small {
   margin-left: -125px;
   height: 40px;
   width: 250px;
-  bottom: 50px;
+  bottom: 10px;
   position: absolute;
   visibility: hidden;
-  display: none;
+  opacity: 0;
+  display: inline-block;
   font-weight: 400;
   border-radius: 2px 2px 5px 5px;
   color: white;
@@ -169,10 +178,10 @@ input.small {
   box-shadow: 0 5px 20px rgba(86, 86, 86, 0.25);
 }
 .flat:hover button {
+  opacity: 1;
   visibility: visible;
-  display: inline-block;
   transition: ease-in;
-  bottom: 10px;
+  transition-duration: 0.5s;
 }
 .flat:hover div.flexible {
   height: 200px;
