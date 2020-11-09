@@ -1,0 +1,232 @@
+@font-face {
+  font-family: "Gotham Pro";
+  src: url("fonts/GothamPro.ttf");
+}
+* {
+  padding: 0;
+  margin: 0 0;
+}
+
+html {
+  background-color: #f8f8f8;
+  font-family: "Gotham Pro", sans-serif !important;
+}
+
+#app {
+  background-color: #f8f8f8;
+  height: 100vh !important;
+  margin-top: 60px;
+  text-align: center;
+}
+
+h1 {
+  font-family: Gotham Pro, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 34px;
+  line-height: 60px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.filter-item {
+  width: 180px;
+}
+
+input.small {
+  width: 80px !important;
+}
+
+.filter-item span {
+  font-weight: bold;
+  font-size: 12px;
+  text-align: left;
+  line-height: 28px;
+}
+
+.filter-submit span {
+  border-bottom: 1px solid #70D24E;
+  font-size: 10px;
+  font-family: "Gotham Pro", sans-serif;
+  line-height: 11px;
+}
+
+.btn-light-green {
+  background-color: #70D24E !important;
+  color: white;
+  width: 200px;
+  margin-top: 5px;
+  margin-left: 10px;
+}
+
+.filter__clear {
+  cursor: pointer;
+}
+.filter__clear:hover {
+  color: cornflowerblue;
+}
+
+.row__height-375px {
+  height: 375px;
+}
+
+.flat {
+  overflow: hidden;
+  position: relative;
+  padding: 10px;
+  font-family: "Gotham Pro", sans-serif;
+  width: 270px;
+  height: 365px;
+  background-color: white;
+  border-radius: 10px;
+  font-size: 12px;
+}
+.flat__about-item {
+  margin-left: -125px;
+  height: 40px;
+  width: 250px;
+  bottom: 50px;
+  position: absolute;
+  visibility: hidden;
+  display: none;
+  font-weight: 400;
+  border-radius: 2px 2px 5px 5px;
+  color: white;
+  background-color: #70D24E;
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.flat__top-wrapper {
+  position: relative;
+  height: 28px;
+  margin-top: 8px;
+  margin-bottom: 2px;
+}
+.flat__floor {
+  float: left;
+}
+.flat__rooms {
+  margin-left: 70px;
+}
+.flat__square {
+  float: right;
+  margin-right: 5px;
+}
+.flat__image-wrapper {
+  margin: auto;
+  width: 250px;
+  height: 250px;
+  border: 1px lightgray solid;
+  border-radius: 10px;
+}
+.flat__plan-image {
+  width: 100%;
+  height: auto;
+}
+.flat__price {
+  line-height: 28px;
+  text-align: right;
+  position: relative;
+  display: block;
+  font-size: 20px;
+  margin-top: 5px;
+  margin-right: 5px;
+  font-weight: bold;
+}
+.flat__price-for-square {
+  font-weight: bold;
+  line-height: 28px;
+  position: relative;
+  text-align: right;
+  display: block;
+  font-size: 12px;
+  margin-right: 5px;
+  color: gray;
+}
+.flat__price, .flat__number, .flat__rooms, .flat__square {
+  font-weight: bold;
+}
+.flat__number {
+  font-size: 14px;
+  position: relative;
+  float: right;
+  width: 62px;
+  height: 30px;
+  border: 1px lightgray solid;
+  border-radius: 0 0 0 10px;
+  border-right: transparent;
+  border-top: transparent;
+}
+
+.flat:hover {
+  box-shadow: 0 5px 20px rgba(86, 86, 86, 0.25);
+}
+.flat:hover button {
+  visibility: visible;
+  display: inline-block;
+  transition: ease-in;
+  bottom: 10px;
+}
+.flat:hover div.flexible {
+  height: 200px;
+  transition: 0.4s ease-in;
+}
+.flat:hover img {
+  width: 80%;
+  transition: 0.4s ease-in;
+}
+
+.slider-process {
+  background-color: #70D24E !important;
+}
+
+input[type=text] {
+  width: 80px;
+  height: 40px;
+  border: 1px solid #D8D8D8;
+  box-sizing: border-box;
+  border-radius: 5px;
+  text-align: center;
+  font-family: "Gotham Pro", sans-serif;
+  line-height: 28px;
+  font-size: 16px;
+}
+
+@media (max-width: 576px) {
+  .row {
+    width: 100% !important;
+  }
+
+  .flat {
+    width: inherit;
+    position: relative;
+    height: 450px;
+    margin: 100px 100px;
+  }
+  .flat__about-item {
+    height: auto;
+    width: 300px;
+    position: absolute;
+    visibility: visible;
+    display: inline-block;
+  }
+
+  .flat:hover button {
+    visibility: visible;
+    display: inline-block;
+  }
+  .flat:hover div.flexible {
+    height: 200px;
+  }
+  .flat:hover img {
+    width: 100%;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
