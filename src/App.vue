@@ -9,7 +9,7 @@
         <span class="d-block ml-3">Комнаты</span>
         <div class=" btn-group-toggle" data-toggle="buttons">
           <label class=" btn btn-light">
-            <input type="radio" v-model="selectRoom" value="s" id="room-s" autocomplete="off" >S
+            <input type="radio" v-model="selectRoom" value="0" id="room-s" autocomplete="off" >S
           </label>
           <label class="btn btn-light">
             <input type="radio" v-model="selectRoom" value="1" id="room-1" autocomplete="off">1K
@@ -171,16 +171,23 @@ export default {
       const minP = parseFloat(this.$refs.minPriceSelected.value) * 1000000
       const maxP = parseFloat(this.$refs.maxPriceSelected.value) * 1000000
 
-      if(!isNaN(rooms)){
 
-        this.flatsFiltered = this.flats
-            .filter(flat => flat['rooms'] === rooms)
-            .filter(flat => flat['floor'] >= minF && flat['floor'] <= maxF)
-            .filter(flat => flat['square'] >= minS && flat['square'] <= maxS)
-            .filter(flat => flat['price_full'] >= minP && flat['price_full'] <= maxP)
+      if(!isNaN(rooms)){
+        if(rooms === 0){
+          this.flatsFiltered = this.flats
+              .filter(flat => flat['is_studio'] === 1)
+              .filter(flat => flat['floor'] >= minF && flat['floor'] <= maxF)
+              .filter(flat => flat['square'] >= minS && flat['square'] <= maxS)
+              .filter(flat => flat['price_full'] >= minP && flat['price_full'] <= maxP)
+        }else{
+          this.flatsFiltered = this.flats
+              .filter(flat => flat['rooms'] === rooms)
+              .filter(flat => flat['floor'] >= minF && flat['floor'] <= maxF)
+              .filter(flat => flat['square'] >= minS && flat['square'] <= maxS)
+              .filter(flat => flat['price_full'] >= minP && flat['price_full'] <= maxP)
+        }
 
       }else{
-
         this.flatsFiltered = this.flats
             .filter(flat => flat['floor'] >= minF && flat['floor'] <= maxF)
             .filter(flat => flat['square'] >= minS && flat['square'] <= maxS)
@@ -194,7 +201,7 @@ export default {
   async mounted() {
     this.flats = await this.$store.getters.flats
     this.flatsFiltered = this.flats
-    console.log(this.$refs)
+
   },
   components: {VueRangeSlider}
 }
