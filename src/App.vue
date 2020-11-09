@@ -106,8 +106,8 @@
 
     <!--Квартиры -->
     <div class="container mt-5">
-      <div class="row row__height-375px mb-4" v-for="chunk in flatChunks">
-        <div class="col-lg-3 col-md-6 col-sm-6 " v-for="flat of chunk">
+      <div class="row row__height-375px mb-4 mr-1" v-for="chunk in flatChunks">
+        <div class="col col-lg-3 col-md-6 col-sm-6 " v-for="flat of chunk">
           <div class="flat">
             <div class="flat__top-wrapper">
               <span class="flat__floor">{{ flat.floor }}</span>
