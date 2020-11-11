@@ -11,6 +11,7 @@ export default new Vuex.Store({
   mutations: {
     setData(state){
       state.flats = Data
+      console.log('data set')
     }
   },
   actions: {

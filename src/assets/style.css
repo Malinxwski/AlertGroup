@@ -68,6 +68,13 @@ input.small {
   box-shadow: 0 0 20px skyblue;
 }
 
+.btn-group-toggle {
+  width: 187px;
+}
+.btn-group-toggle label {
+  margin-right: 3px;
+}
+
 .filter__clear {
   cursor: pointer;
 }

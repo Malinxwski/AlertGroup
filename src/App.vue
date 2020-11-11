@@ -6,18 +6,18 @@
     <div class="filter-items">
       <!--Комнаты -->
       <div class="filter-item d-inline-block mr-2" >
-        <span class="d-block ml-2">Комнаты</span>
-        <div class=" btn-group-toggle" data-toggle="buttons">
+        <span class="d-block ml-3">Комнаты</span>
+        <div class="btn-group-toggle" data-toggle="buttons">
           <label class=" btn btn-light">
             <input type="radio" v-model="selectRoom" value="0" id="room-s" autocomplete="off" >S
           </label>
-          <label class="mr-1 btn btn-light">
+          <label class="btn btn-light">
             <input type="radio" v-model="selectRoom" value="1" id="room-1" autocomplete="off">1K
           </label>
-          <label class="  btn btn-light">
+          <label class="btn btn-light">
             <input type="radio" v-model="selectRoom" value="2" id="room-2" autocomplete="off">2K
           </label>
-          <label class=" mr-1 btn btn-light">
+          <label class="btn btn-light">
             <input type="radio" v-model="selectRoom" value="3" id="room-3" autocomplete="off">3K
           </label>
         </div>
@@ -95,38 +95,17 @@
       <!--Действия -->
       <div class="filter-submit filter-item align-bottom d-inline-block ">
         <button type="button"
-                @click.prevent="filterItems"
+                @click.prevent="setParams"
                 class="btn-light-green btn d-inline-block">Применить</button>
         <span
             class="filter__clear ml-5 mr-0"
-            @click.prevent="dropFilter"
+            @click="dropFilter"
             > Сбросить </span>
       </div>
     </div>
 
-    <!--Квартиры -->
-    <div class="container mt-5" style="z-index: -10">
-      <div class="row row__height-375px mb-4 mr-1" v-for="chunk in flatChunks">
-        <div class="col col-lg-3 col-md-6 col-sm-6 " v-for="flat of chunk">
-          <div class="flat">
-            <div class="flat__top-wrapper">
-              <span class="flat__floor">{{ flat.floor }}</span>
-              <span class="flat__rooms">{{ flat.rooms }} комната</span> –
-              <span class="flat__square">{{ flat.square }}м2</span>
-            </div>
-            <div class="flexible flat__image-wrapper">
-              <span class="flat__number">№ {{ flat.number }}</span>
-              <img  class="flat__plan-image" src="@/assets/img/1.svg" alt="">
-            </div>
-            <span class="flat__price">{{  flat.price_full.toLocaleString()  }}р.</span>
-            <span class="flat__price-for-square">
-              {{Math.round(flat.price_full/flat.square).toLocaleString()}}р. за м2
-            </span>
-            <button type="button" class="flat__about-item">Подробнее</button>
-          </div>
-        </div>
-      </div>
-    </div>
+                                   <!-- Компонент квартир -->
+    <Items :params="params" :flats="flats"></Items>
 
   </div>
 </template>
@@ -134,13 +113,14 @@
 
 import 'vue-range-component/dist/vue-range-slider.css'
 import VueRangeSlider from 'vue-range-component'
+import Items from "@/components/Items";
 
 export default {
   name:'App',
   data:()=>({
-    selectRoom:'',
+    params:{},
     flats:[],
-    flatsFiltered:[],
+    selectRoom:'',
     minFloor: 1,
     maxFloor: 99,
     floor:[1, 99],
@@ -152,18 +132,14 @@ export default {
     price:[1.9,99.9],
     enableCross: false
   }),
-  computed:{
-    flatChunks(){
-      return _.chunk(Object.values(this.flatsFiltered), 4)
-    },
+  async created(){
+    await this.$store.commit('setData')
+  },
+  async mounted(){
+    this.flats = await this.$store.getters.flats
   },
   methods:{
-    dropFilter(){
-      $('label.btn').removeClass('active')
-      return this.flatsFiltered = this.flats
-    },
-    filterItems(){
-
+    setParams(){
       const rooms = parseInt(this.selectRoom)
       const minF = parseInt(this.$refs.minFloorSelected.value)
       const maxF = parseInt(this.$refs.maxFloorSelected.value)
@@ -171,42 +147,23 @@ export default {
       const maxS = parseInt(this.$refs.maxSquareSelected.value)
       const minP = parseFloat(this.$refs.minPriceSelected.value) * 1000000
       const maxP = parseFloat(this.$refs.maxPriceSelected.value) * 1000000
-
-
-      if(!isNaN(rooms)){
-        if(rooms === 0){
-          this.flatsFiltered = this.flats
-              .filter(flat => flat['is_studio'] === 1)
-              .filter(flat => flat['floor'] >= minF && flat['floor'] <= maxF)
-              .filter(flat => flat['square'] >= minS && flat['square'] <= maxS)
-              .filter(flat => flat['price_full'] >= minP && flat['price_full'] <= maxP)
-        }else{
-          this.flatsFiltered = this.flats
-              .filter(flat => flat['rooms'] === rooms)
-              .filter(flat => flat['floor'] >= minF && flat['floor'] <= maxF)
-              .filter(flat => flat['square'] >= minS && flat['square'] <= maxS)
-              .filter(flat => flat['price_full'] >= minP && flat['price_full'] <= maxP)
-        }
-
-      }else{
-        this.flatsFiltered = this.flats
-            .filter(flat => flat['floor'] >= minF && flat['floor'] <= maxF)
-            .filter(flat => flat['square'] >= minS && flat['square'] <= maxS)
-            .filter(flat => flat['price_full'] >= minP && flat['price_full'] <= maxP)
+      this.params = []
+      this.params ={
+        rooms,
+        minF,
+        maxF,
+        minS,
+        maxS,
+        minP,
+        maxP
       }
-    }
-  },
-  async created(){
-    await this.$store.commit('setData')
-  },
-  async mounted() {
-    this.flats = await this.$store.getters.flats
-    this.flatsFiltered = this.flats
+    },
+    dropFilter(){
 
-    
-
+       return this.params = {}
+    },
   },
-  components: {VueRangeSlider}
+  components: {VueRangeSlider, Items}
 }
 </script>
 
