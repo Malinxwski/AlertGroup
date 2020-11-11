@@ -36,6 +36,7 @@
                v-model="floor[1]"
                class="small d-inline-block">
         <VueRangeSlider
+            ref="floorSlider"
             :dot-size="15"
             :width="175['px']"
             v-model="floor"
@@ -115,6 +116,7 @@ import 'vue-range-component/dist/vue-range-slider.css'
 import VueRangeSlider from 'vue-range-component'
 import Items from "@/components/Items";
 
+
 export default {
   name:'App',
   data:()=>({
@@ -159,8 +161,11 @@ export default {
       }
     },
     dropFilter(){
-
-       return this.params = {}
+      let label = document.querySelector("label.btn")
+      if (label.classList.contains('active')) {
+        label.classList.remove('active');
+      }
+      return this.params = {}
     },
   },
   components: {VueRangeSlider, Items}
